@@ -3,8 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-const controllers = require('../controllers/controllers');
-const authControllers = require('../controllers/authControllers');
+const controllers = require('./controllers/controllers');
+const authControllers = require('./controllers/authControllers');
 
 const PORT = 3000;
 
@@ -12,7 +12,7 @@ const app = express();
 
 // parse the request body
 app.use(bodyParser.json());
-app.use(bodyParser.urlEncoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse cookies
 app.use(cookieParser());

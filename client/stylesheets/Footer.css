@@ -1,0 +1,10 @@
+#Footer-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+}
+div.footer-elements {
+  border: 1px
+}
