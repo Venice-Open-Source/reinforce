@@ -11,9 +11,9 @@ const Footer = () => {
   })
 
   return (
-    <div className="Footer-div">
+    <footer className="Footer-div">
       {footerElements}
-    </div>
+    </footer>
   )
 }
 

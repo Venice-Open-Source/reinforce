@@ -8,11 +8,9 @@ import '../stylesheets/Home.css';
 const Home = () => {
   return (
     <div id="Home-container" className="Home">
-      {/* <Navbar/> */}
       <div className="home-div">
         sets
       </div>
-      <Footer/>
     </div>
   )
 }

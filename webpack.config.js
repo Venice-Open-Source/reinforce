@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
+    publicPath: '/'
   },
   // plugins: [
   //   new HtmlWebpackPlugin({
@@ -14,6 +15,7 @@ module.exports = {
   //   })
   // ],
   devServer: {
+    historyApiFallback: true,
     contentBase: './client',
     publicPath: '/build/',
     hot: true,
