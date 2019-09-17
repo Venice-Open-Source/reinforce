@@ -16,3 +16,8 @@ CREATE TABLE IF NOT EXISTS cards (
   answer VARCHAR (500) NOT NULL,
   cardset_id INTEGER REFERENCES cardsets(cardset_id)
 );
+
+CREATE TABLE IF NOT EXISTS sessions (
+  email VARCHAR (250) UNIQUE NOT NULL REFERENCES users(email), 
+  ssid INTEGER
+);

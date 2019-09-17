@@ -18,44 +18,51 @@ authControllers.createUser = (req, res, next) => {
     });
 };
 
-// relies on database responding with an error to handle incorrect username password combinations
+// should call set cookie as the next piece of middleware in the chain
 authControllers.loginUser = (req, res, next) => {
-  const { username, password } = req.body;
-  const query = 'SELECT email AND password FROM users WHERE username=$1 AND password=$2 RETURNING *';
-  const values = [username, password];
+  const { email, password } = req.body;
+  const query = 'SELECT email AND password FROM users WHERE email=$1 AND password=$2 RETURNING *';
+  const values = [email, password];
   db.query(query, values)
     .then((resp) => {
-    // if the database responds with username & password, the username and password exist
-    // store ssid into database
-      const ssid = uuidv4();
-      const query = 'INSERT INTO sessions (username, ssid) VALUES ($1, $2) RETURNING *';
-      const values = [username, ssid];
-      db.query(query, values)
-        .then((resp) => {
-          res.cookie('ssid', ssid);
-
-          return next();
-        })
-        .catch((err) => {
-          console.log('error storing ssid in sessions table', 'error message', err);
-          res.status(403).send('Internal Server Error');
-        });
+      console.log(resp);
+      if (resp.rows[0]) {
+        next();
+      }
     })
     .catch((err) => {
-      res.status(403).send('Not Authorized');
+      next({ log: err });
     });
 };
 
-// relies on server responding with an error if the ssid doesn't exist
+authControllers.setCookie = (req, res, next) => {
+  const ssid = uuidv4();
+  const { email } = req.body;
+  const query = 'INSERT INTO sessions (email, ssid) VALUES ($1, $2) RETURNING *';
+  const values = [email, ssid];
+  db.query(query, values)
+    .then((resp) => {
+      console.log(resp);
+      res.cookie('ssid', ssid);
+      return next();
+    })
+    .catch((err) => {
+      next({ log: err });
+    });
+};
+
 authControllers.checkCookie = (req, res, next) => {
   // check req.cookies.ssid against the database
-  const { ssid } = req.body.cookies;
+  const { ssid } = req.body.cookie;
   const query = 'SELECT ssid FROM sessions WHERE ssid=$1 RETURNING *';
   const values = [ssid];
   db.query(query, values)
     .then((resp) => {
       console.log(resp);
-      next();
+      if (resp.rows[0] === ssid) {
+        res.locals.uer = resp.rows[0];
+        next();
+      }
     })
     .catch((err) => {
       next({ log: err });
