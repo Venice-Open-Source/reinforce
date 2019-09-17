@@ -2,8 +2,19 @@ import * as types from "../constants/action-types";
 
 const initialState = {
   userEmail: "jakeory@yahoo.com",
+  setName: "",
+  cardFront: "",
+  cardBack: "",
   sets: [
-    { setname: "1", cards: [{ question: answer }, { question2: answer2 }] }
+    {
+      setname: "", 
+      cards: [
+        {
+          front: "",
+          back: ""     
+        }, 
+      ] 
+    }
   ]
 };
 

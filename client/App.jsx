@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
+import Home from './containers/Home.jsx';
 
 const mapStateToProps = store => ({
   user: {
@@ -17,10 +18,7 @@ const App = () => {
 
   return (
     <div>
-      <button className="hello" onClick={() => setHello("goodbye")}>
-        goodbye
-      </button>
-      <div>{hello}</div>
+      <Home/>
     </div>
   );
 };

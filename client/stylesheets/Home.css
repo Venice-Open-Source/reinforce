@@ -1,0 +1,17 @@
+body {
+  background: yellow;
+}
+
+#Home-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  border: 1px;
+  background-color: green;
+}
+
+div.home-div {
+  border: 1px
+}
