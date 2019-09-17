@@ -1,0 +1,48 @@
+{
+  "name": "reinforce",
+  "version": "1.0.0",
+  "description": "Flash cards baby",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/server.js",
+    "build": "NODE_ENV=production webpack --config webpack.config.js",
+    "dev": "NODE_ENV=development webpack-dev-server --open & nodemon ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bleep241/reinforce.git"
+  },
+  "author": "Nic, Billy, Jess, Jeighck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bleep241/reinforce/issues"
+  },
+  "homepage": "https://github.com/bleep241/reinforce#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "pg": "^7.12.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.40.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.19.2",
+    "style-loader": "^1.0.0",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.1"
+  }
+}
