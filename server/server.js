@@ -23,6 +23,24 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+/*                ROUTES FOR TESTING                */
+// dummy route for testing authentication
+app.post('/createUser', authControllers.createUser, authControllers.setCookie, (req, res) => {
+  res.status(200).send('secret accessed');
+});
+
+// dummy routes for testing authentication
+app.post('/login', authControllers.login, authControllers.checkCookie, (req, res) => {
+  res.status(200).send('secret accessed');
+});
+
+// dummy routes for testing authentication
+app.get('/deleteCard', authControllers.checkCookie, (req, res) => {
+  res.status(200).send('secret accessed');
+});
+/*                END ROUTES FOR TESTING                */
+
+
 // handle all routes without a route handler
 app.use('*', (req, res) => {
   res.status(404).send('Path not found');
