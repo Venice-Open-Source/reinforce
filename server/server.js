@@ -30,7 +30,7 @@ app.post('/createUser', authControllers.createUser, authControllers.setCookie, (
 });
 
 // dummy routes for testing authentication
-app.post('/login', authControllers.login, authControllers.checkCookie, (req, res) => {
+app.post('/login', authControllers.login, authControllers.setCookie, (req, res) => {
   res.status(200).send('secret accessed');
 });
 

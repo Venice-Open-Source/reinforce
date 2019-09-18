@@ -18,6 +18,6 @@ CREATE TABLE IF NOT EXISTS cards (
 );
 
 CREATE TABLE IF NOT EXISTS sessions (
-  email VARCHAR (250) UNIQUE NOT NULL REFERENCES users(email), 
+  email VARCHAR (250) NOT NULL REFERENCES users(email), 
   ssid VARCHAR (250) NOT NULL
 );
