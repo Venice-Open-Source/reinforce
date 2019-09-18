@@ -9,14 +9,13 @@ const authControllers = {};
 // should call setCookie after creating user as the next piece of middleware in the chain
 authControllers.createUser = (req, res, next) => {
   const { email, password } = req.body;
-  if (email.length !== undefined && password !== undefined) {
+  if (email !== undefined && password !== undefined) {
     const query = 'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *';
     const salt = bcrypt.genSaltSync(Salt_Work_Factor);
     const hashedPass = bcrypt.hashSync(password, salt);
     const values = [email, hashedPass];
     db.query(query, values)
       .then((resp) => {
-      // console.log('response in createUser:', resp);
         res.locals.email = resp.rows[0].email;
         res.locals.password = resp.rows[0].password;
         res.locals.userId = resp.rows[0].user_id;
@@ -41,10 +40,13 @@ authControllers.login = (req, res, next) => {
     const values = [email];
     db.query(query, values)
       .then((resp) => {
-        // console.log('response in user login authentication:', resp);
+        // email or does not exist in the database
+        if (resp.rows.length === 0) {
+          // redirect to login screen
+          return res.redirect('/');
+        }
         bcrypt.compare(password, resp.rows[0].password, (err, data) => {
           if (data) {
-            console.log('data in bcrypt func:', data);
             res.locals.userId = resp.rows[0].user_id;
             res.locals.email = resp.rows[0].email;
             next();
@@ -68,7 +70,6 @@ authControllers.setCookie = (req, res, next) => {
   const values = [email, ssid];
   db.query(query, values)
     .then((resp) => {
-      // console.log('response in set cookie:', resp);
       res.cookie('ssid', ssid);
       return next();
     })
@@ -85,7 +86,6 @@ authControllers.checkCookie = (req, res, next) => {
     const values = [ssid];
     db.query(query, values)
       .then((resp) => {
-        // console.log('response in checkCookie:', resp);
         // check to see if cookie is in database
         if (resp.rows[0].ssid === ssid) {
         // query database for user id
@@ -94,13 +94,12 @@ authControllers.checkCookie = (req, res, next) => {
           const queryValue = [email];
           db.query(getUserId, queryValue)
             .then((userTableResponse) => {
-              // console.log('response in checkCookie user table', userTableResponse);
               res.locals.userId = userTableResponse.rows[0].user_id;
+              return next();
             })
             .catch((err) => {
               next({ log: err });
             });
-          next();
         } else {
           res.redirect('/');
         }

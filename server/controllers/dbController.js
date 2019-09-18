@@ -5,10 +5,13 @@ const connectionString = process.env.PG_CONNECTION;
 const pool = new pg.Pool({ connectionString });
 let connectedClient;
 
-pool.connect((err, client) => {
-  if (err) return ({ err });
-  connectedClient = client;
-});
+// only connect once!
+if (!connectedClient) {
+  pool.connect((err, client) => {
+    if (err) throw new Error(err);
+    connectedClient = client;
+  });
+}
 
 const dbController = {};
 

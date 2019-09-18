@@ -8,7 +8,7 @@ setController.getSet = (req, res, next) => {
       res.locals.set = set;
       return next();
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 setController.createSet = (req, res, next) => {
@@ -20,7 +20,7 @@ setController.createSet = (req, res, next) => {
       res.locals.set = { setId };
       return next();
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 setController.updateSet = (req, res, next) => {
@@ -28,14 +28,14 @@ setController.updateSet = (req, res, next) => {
   res.locals.db.query(SQL,
     [req.body.label, req.body.description, req.body.setId, res.locals.userId])
     .then(() => next())
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 setController.deleteSet = (req, res, next) => {
   const SQL = 'DELETE FROM cardsets WHERE cardset_id = $1 AND user_id = $2';
   res.locals.db.query(SQL, [req.body.setId, res.locals.userId])
     .then(() => next())
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 setController.getSets = (req, res, next) => {
@@ -46,7 +46,7 @@ setController.getSets = (req, res, next) => {
       res.locals.set = set;
       return next();
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 module.exports = setController;

@@ -13,7 +13,7 @@ cardController.getCard = (req, res, next) => {
       res.locals.set = card;
       return next();
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 cardController.createCard = (req, res, next) => {
@@ -34,9 +34,9 @@ cardController.createCard = (req, res, next) => {
           res.locals.card = { cardId };
           return next();
         })
-        .catch((queryErr) => next(queryErr));
+        .catch((queryErr) => next({ log: queryErr }));
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 cardController.updateCard = (req, res, next) => {
@@ -48,16 +48,16 @@ cardController.updateCard = (req, res, next) => {
     .then((data) => {
       const [validationResult] = data.rows;
       const setId = validationResult.cardset_id;
-      if (!setId) return ({ err: `attempt to update a card in a set not owned by user ${res.locals.userId}` });
+      if (!setId) next({ log: `attempt to update a card in a set not owned by user ${res.locals.userId}` });
       const updateSQL = `UPDATE cards 
                           SET question = $1, answer = $2, cardset_id = $3
                           WHERE card_id = $4`;
       res.locals.db.query(updateSQL,
         [req.body.question, req.body.answer, req.body.setId, req.body.cardId])
         .then(() => next())
-        .catch((queryErr) => next(queryErr));
+        .catch((queryErr) => next({ log: queryErr }));
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 cardController.deleteCard = (req, res, next) => {
@@ -69,15 +69,15 @@ cardController.deleteCard = (req, res, next) => {
     .then((data) => {
       const [validationResult] = data.rows;
       const setId = validationResult.cardset_id;
-      if (!setId) return ({ err: `attempt to delete a card in a set not owned by user ${res.locals.userId}` });
+      if (!setId) return next({ log: `attempt to delete a card in a set not owned by user ${res.locals.userId}` });
       const deleteSQL = `DELETE FROM cards 
                           WHERE card_id = $1 AND cardset_id = $2`;
       res.locals.db.query(deleteSQL,
         [req.body.cardId, req.body.setId])
         .then(() => next())
-        .catch((queryErr) => next(queryErr));
+        .catch((queryErr) => next({ log: queryErr }));
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 cardController.deleteCardsForSet = (req, res, next) => {
@@ -89,15 +89,15 @@ cardController.deleteCardsForSet = (req, res, next) => {
     .then((data) => {
       const [validationResult] = data.rows;
       const setId = validationResult.cardset_id;
-      if (!setId) return ({ err: `attempt to delete a card in a set not owned by user ${res.locals.userId}` });
+      if (!setId) return next({ log: `attempt to delete a card in a set not owned by user ${res.locals.userId}` });
       const deleteSQL = `DELETE FROM cards 
                           WHERE cardset_id = $1`;
       res.locals.db.query(deleteSQL,
         [req.body.setId])
         .then(() => next())
-        .catch((queryErr) => next(queryErr));
+        .catch((queryErr) => next({ log: queryErr }));
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
 
 cardController.getCardsForSet = (req, res, next) => {
@@ -112,42 +112,8 @@ cardController.getCardsForSet = (req, res, next) => {
       res.locals.set = data.rows;
       return next();
     })
-    .catch((queryErr) => next(queryErr));
+    .catch((queryErr) => next({ log: queryErr }));
 };
-
-cardController.getCardsForEverySet = (req, res, next) => {
-  const results = {};
-
-  const userDataSQL = 'SELECT email FROM users WHERE user_id = $1';
-  const setDataSQL = 'SELECT label, cardset_id FROM cardsets WHERE user_id = $1';
-  const cardDataSQL = 'SELECT question, answer FROM cards WHERE cardset_id = $1';
-
-  res.locals.db.query(userDataSQL, [res.locals.userId])
-    .then((data) => {
-      const [email] = data.rows;
-      results.userEmail = email;
-      results.sets = [];
-      res.locals.db.query(setDataSQL, [res.locals.userId])
-        .then((sets) => {
-          sets.rows.forEach((e) => {
-            res.locals.db.query(cardDataSQL, [e.cardset_id])
-              .then((cards) => {
-                results.sets.push({
-                  setName: e.label,
-                  cards: cards.rows.map((c) => ({
-                    cardFront: c.question,
-                    cardBack: c.answer,
-                  })),
-                });
-                res.locals.all = results;
-                return next();
-              });
-          });
-        });
-    })
-    .catch((queryErr) => next(queryErr));
-};
-
 
 cardController.getCardsForEverySet = async (req, res, next) => {
   const results = {};
@@ -156,7 +122,7 @@ cardController.getCardsForEverySet = async (req, res, next) => {
   const setDataSQL = 'SELECT label, cardset_id FROM cardsets WHERE user_id = $1';
   const cardDataSQL = 'SELECT question, answer FROM cards WHERE cardset_id = $1';
 
-  const data = await res.locals.db.query(userDataSQL, [res.locals.userId]).catch((e) => console.log('err', e));
+  const data = await res.locals.db.query(userDataSQL, [res.locals.userId]).catch((e) => next({ log: e }));
   const [user] = data.rows;
   results.userEmail = user.email;
   results.sets = [];
