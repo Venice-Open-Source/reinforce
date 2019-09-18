@@ -4,20 +4,24 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 3.5rem;
+  height: 4.5rem;
   padding: 0 1rem;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  /* z-index: 300; */
 }
 
+.main-nav_logo,
 .main-nav_logo h1 {
-  margin: 0;
   font-size: 1.5rem;
+  margin-right: auto;
 }
 
 .main-nav_items {
-  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
+
 .main-nav_items ul {
   display: flex;
   padding: 0;
@@ -38,4 +42,18 @@
 .main-nav_items a:active,
 .main-nav_items a.active {
   color: orange;
+}
+
+.fa-burger {
+  font-size: 2rem;
+}
+
+.fa-burger:hover {
+  color: white;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.pane-modal {
+  border: 2px solid aquamarine;
 }
