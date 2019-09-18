@@ -15,14 +15,10 @@ export const updateSetName = (setName) => ({
   payload: setName
 });
 
-export const addSet = (setName) => {
-  console.log('setName in addSet action', setName);
-
-  return {
-    type: types.ADD_SET,
-    payload: setName
-  }
-};
+export const addSet = (setName) => ({
+  type: types.ADD_SET,
+  payload: setName
+});
 
 export const updateCardName = (cardName) => ({
   type: types.UPDATE_CARD,
@@ -32,4 +28,9 @@ export const updateCardName = (cardName) => ({
 export const addCard = (cardName) => ({
   type: types.ADD_CARD,
   payload: cardName
-})
+});
+
+export const userSignIn = (userInfo) => ({
+  type: types.USER_SIGNIN,
+  payload: userInfo
+});

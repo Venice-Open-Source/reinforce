@@ -8,6 +8,33 @@ import SlidingPane from 'react-sliding-pane';
 import '../stylesheets/NavBar.css';
 
 function Navbar(props) {
+  const myNav = !props.isLoggedIn ? (
+  <ul>
+    <li>
+      <NavLink to="/sets">Log In</NavLink>
+    </li>
+    <li>
+      <NavLink to="/auth">Sign Up</NavLink>
+    </li>
+    <li>
+      {/* <NavLink to="/menu">Menu</NavLink> */}
+      <FontAwesomeIcon icon={faBars} className="fa-burger" onClick={() => props.changeShowModal(!props.showModal)}/>
+    </li>
+  </ul>
+  ) : (
+    <ul>
+    <li>
+      <NavLink to="/sets">Sets</NavLink>
+    </li>
+    <li>
+      <NavLink to="/auth">Auth</NavLink>
+    </li>
+    <li>
+      {/* <NavLink to="/menu">Menu</NavLink> */}
+      <FontAwesomeIcon icon={faBars} className="fa-burger" onClick={() => props.changeShowModal(!props.showModal)}/>
+    </li>
+  </ul>
+  )
 
   return (
     <header className="main-nav">
@@ -15,18 +42,7 @@ function Navbar(props) {
         <h1>Reinforce</h1>
       </div>
       <nav className="main-nav_items">
-        <ul>
-          <li>
-            <NavLink to="/sets">Sets</NavLink>
-          </li>
-          <li>
-            <NavLink to="/auth">Auth</NavLink>
-          </li>
-          <li>
-            {/* <NavLink to="/menu">Menu</NavLink> */}
-            <FontAwesomeIcon icon={faBars} className="fa-burger" onClick={() => props.changeShowModal(!props.showModal)}/>
-          </li>
-        </ul>
+        {myNav}
       </nav>
       {/* <SlidingPane
         ariaHideApp={false}

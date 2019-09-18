@@ -9,17 +9,17 @@ import Modal from './containers/Modal.jsx'
 import Backdrop from './components/Backdrop.jsx';
 
 import './stylesheets/App.css';
+
 const mapStateToProps = store => ({
-  user: {
-    userId: store.colleague.user.userId,
-    userName: store.colleague.user.userName,
-    userScores: store.colleague.user.userScores
-  },
-  set: store.set,
-  cards: [...store.cards]
+  store: store.reinforce,
+  isLoggedIn: store.reinforce.isLoggedIn
 });
 
-const App = () => {
+const mapDispatchToProps = dispatch => ({
+
+});
+
+const App = (props) => {
   const [showModal, changeShowModal] = useState(false);
   const [showBackdrop, changeShowBackdrop] = useState(false);
 
@@ -29,7 +29,7 @@ const App = () => {
         <Modal show={showModal}/>
        { showModal &&  <Backdrop changeShowModal={changeShowModal} showModal={showModal}/> }
         <>
-          <NavBar changeShowModal={changeShowModal} showModal={showModal}/>
+          <NavBar changeShowModal={changeShowModal} showModal={showModal} isLoggedIn={props.isLoggedIn}/>
           <main className="main-content">
           <Switch>
             <Redirect from='/' to='/auth' exact />
@@ -45,4 +45,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
