@@ -1,7 +1,7 @@
 const pg = require('pg');
 require('dotenv').config();
 
-const connectionString = process.env.PG_CONNECTION;
+const connectionString = "postgres://pjvvtmfk:zT5mz8u4CJK0HdMKj6qN69N0gKU2MSHZ@otto.db.elephantsql.com:5432/pjvvtmfk";
 const pool = new pg.Pool({ connectionString });
 let connectedClient;
 
@@ -16,8 +16,9 @@ if (!connectedClient) {
 const dbController = {};
 
 dbController.getDb = (req, res, next) => {
+  console.log('getDB controller fired');
   res.locals.db = connectedClient;
-  next();
+  return next();
 };
 
 module.exports = dbController;
