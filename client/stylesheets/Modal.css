@@ -1,0 +1,46 @@
+.modal-pane {
+  background: white;
+  height: 100%;
+  box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  max-width: 400px;
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+}
+
+.modal-pane.open {
+  transform: translateX(0);
+}
+
+.modal-pane ul {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.modal-pane li {
+  margin: 0.5rem 0;
+}
+
+.modal-pane a {
+  color: orange;
+  text-decoration: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal-pane a:hover,
+.modal-pane a:active {
+  color: purple;
+  transition: 0.3s;
+}
