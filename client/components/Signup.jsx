@@ -1,7 +1,7 @@
 import React, { useState, Component } from "react";
 import { NavLink } from "react-router-dom";
 
-const Login = (props) => {
+const Signup = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,16 +16,16 @@ const Login = (props) => {
                 <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}></input>
             </div>
             <div className="form-actions">
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink to="/login">Already Have An Account?</NavLink>
                 <button type="submit" onClick={(e) => {
                     e.preventDefault();
                     const user = { email, password }
                     console.log(user);
-                    props.loginHandler(user)
-                }}>Login</button>
+                    props.signupHandler(user)
+                }}>SignUp</button>
             </div>
         </form>
     )
 }
 
-export default Login;
+export default Signup;
