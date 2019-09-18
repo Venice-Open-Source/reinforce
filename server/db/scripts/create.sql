@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS cardsets (
   cardset_id serial PRIMARY KEY,
-  username VARCHAR (250) UNIQUE NOT NULL,
+  label VARCHAR (50) NOT NULL,
+  description VARCHAR (500),
   user_id INTEGER REFERENCES users(user_id)
 );
 
