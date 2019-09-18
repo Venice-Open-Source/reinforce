@@ -36,7 +36,7 @@ build/Release
 node_modules/
 jspm_packages/
 package-lock.json
-build/bundle.js
+/build/bundle.js
 
 # TypeScript v1 declaration files
 typings/

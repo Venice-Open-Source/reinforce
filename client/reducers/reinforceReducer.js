@@ -6,15 +6,10 @@ const initialState = {
   cardFront: "",
   cardBack: "",
   sets: [
-    {
-      setname: "", 
-      cards: [
-        {
-          front: "",
-          back: ""     
-        }, 
-      ] 
-    }
+    // {
+    //   setname: "", 
+    //   cards: [] 
+    // }
   ]
 };
 
@@ -37,6 +32,29 @@ const reinforceReducer = (state = initialState, action) => {
         user
       };
     }
+
+    case types.UPDATE_SET:
+      let setName = action.payload;
+
+      return {
+        ...state,
+        setName: setName
+      };
+    
+    case types.ADD_SET: 
+      console.log('action payload in add_set reducer', action.payload);
+      const mySet = {
+        setname: state.setName,
+        cards: []
+      };
+
+      const currentSets = state.sets.slice();
+      currentSets.push(mySet);
+
+      return {
+        ...state,
+        sets: currentSets
+      }
 
     default:
       return state;
