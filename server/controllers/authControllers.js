@@ -1,5 +1,8 @@
 const uuidv4 = require('uuid/v4');
+const bcrypt = require('bcryptjs');
 const db = require('../model/db');
+
+const Salt_Work_Factor = 10;
 
 const authControllers = {};
 
@@ -8,7 +11,9 @@ authControllers.createUser = (req, res, next) => {
   const { email, password } = req.body;
   if (email.length !== undefined && password !== undefined) {
     const query = 'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *';
-    const values = [email, password];
+    const salt = bcrypt.genSaltSync(Salt_Work_Factor);
+    const hashedPass = bcrypt.hashSync(password, salt);
+    const values = [email, hashedPass];
     db.query(query, values)
       .then((resp) => {
       // console.log('response in createUser:', resp);
@@ -18,10 +23,13 @@ authControllers.createUser = (req, res, next) => {
         next();
       })
       .catch((err) => {
+        if (err.code === '23505') {
+          res.send('User already exists.  Please choose another email.');
+        }
         next({ log: err });
       });
   } else {
-    res.send('Your attempt to create a user account was unsuccessful.  Please refresh and try again');
+    res.send('Your attempt to create a user account was unsuccessful.  Please refresh and try again.');
   }
 };
 
@@ -34,11 +42,16 @@ authControllers.login = (req, res, next) => {
     db.query(query, values)
       .then((resp) => {
         // console.log('response in user login authentication:', resp);
-        if (password === resp.rows[0].password) {
-          res.locals.userId = resp.rows[0].user_id;
-          res.locals.email = resp.rows[0].email;
-          next();
-        }
+        bcrypt.compare(password, resp.rows[0].password, (err, data) => {
+          if (data) {
+            console.log('data in bcrypt func:', data);
+            res.locals.userId = resp.rows[0].user_id;
+            res.locals.email = resp.rows[0].email;
+            next();
+          } else {
+            return next({ log: 'incorrect password', message: 'Incorrect password.  Please refresh and enter your password again' });
+          }
+        });
       })
       .catch((err) => {
         next({ log: err });
