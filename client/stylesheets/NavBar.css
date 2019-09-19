@@ -8,8 +8,7 @@
   padding: 0 1rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  /* z-index: 300; */
+  justify-content: space-between;
 }
 
 .main-nav_logo,
@@ -21,8 +20,7 @@
 }
 
 .main-nav_items {
-  
-  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .main-nav_items ul {

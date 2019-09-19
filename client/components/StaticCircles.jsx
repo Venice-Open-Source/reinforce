@@ -27,8 +27,8 @@ function StaticCircles() {
         z={-2}/>
 
       <StaticCircle color="rgb(255, 109, 167)" 
-        diameter="100px" 
-        top="-2vw"
+        diameter="130px" 
+        top="15vw"
         right="-5vw"
         z={-2} />
 

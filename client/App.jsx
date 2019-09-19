@@ -6,7 +6,8 @@ import Home from './containers/Home.jsx';
 import Auth from './components/Auth.jsx';
 import NavBar from './components/Navbar.jsx';
 import SetContainer from './containers/SetContainer.jsx';
-import Modal from './containers/Modal.jsx'
+import Modal from './containers/Modal.jsx';
+import Login from './components/Login.jsx';
 import StaticCircles from './components/StaticCircles.jsx';
 import AnimatedSquares from './components/AnimatedSquares.jsx';
 

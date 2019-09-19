@@ -16,7 +16,7 @@ const Login = (props) => {
                 <input type="password" id="password" onChange={(e) => setPassword(e.target.value)}></input>
             </div>
             <div className="form-actions">
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink to="/signup"><button>Sign Up</button></NavLink>
                 <button type="submit" onClick={(e) => {
                     e.preventDefault();
                     const user = { email, password }

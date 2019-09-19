@@ -18,7 +18,7 @@ function Navbar(props) {
       </li>
       <li>
         {/* <NavLink to="/menu">Menu</NavLink> */}
-        <FontAwesomeIcon icon={faBars} className="fa-burger" onClick={() => props.changeShowModal(!props.showModal)} />
+        {/* <FontAwesomeIcon icon={faBars} className="fa-burger" onClick={() => props.changeShowModal(!props.showModal)} /> */}
       </li>
     </ul>
   ) : (
