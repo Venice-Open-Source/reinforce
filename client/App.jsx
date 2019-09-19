@@ -33,6 +33,26 @@ const App = () => {
           <Route path='/sets' component={SetContainer} />
           <Route path='/menu' component={Modal} />
         </Switch>
+        <div id='circle-one' />
+        <div id='circle-two' />
+        <div id='circle-three' />
+        <div id='circle-four' />
+        <img id='thinker-one' src='/assets/thinker.svg'/>
+
+<div class="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+            </ul>
+    </div >
         </main>
       </Fragment>
     </BrowserRouter>

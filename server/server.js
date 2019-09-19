@@ -15,7 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse cookies
 app.use(cookieParser());
-app.use('/build/', express.static(path.resolve(__dirname, '../build')));
+// app.use('/build/', express.static(path.resolve(__dirname, '../build')));
+
+app.use('/assets/', express.static(path.resolve(__dirname, '../client/assets/')));
 app.use('/api', apiRouter);
 
 // slash route
