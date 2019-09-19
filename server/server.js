@@ -25,7 +25,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/addCard', (req, res) => {
-  res.status(200).json({card: "success"});
+  console.log('addCard route', req.body);
+  res.status(200).json(req.body);
 })
 
 /*                ROUTES FOR TESTING                */
@@ -48,6 +49,7 @@ app.get('/deleteCard', authControllers.checkCookie, (req, res) => {
 
 // handle all routes without a route handler
 app.use('*', (req, res) => {
+  console.log('req body in errant routehandler', req.body);
   res.status(404).send('Path not found');
 });
 

@@ -10,6 +10,8 @@ import Modal from './containers/Modal.jsx'
 import Backdrop from './components/Backdrop.jsx';
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
+import CardContainer from './containers/CardContainer.jsx';
+
 
 import './stylesheets/App.css';
 
@@ -48,6 +50,7 @@ const App = (props) => {
               <Route path='/signup' render={() => (<Signup signupHandler={props.signupButtonHandler} />)} />
               <Route path='/sets' component={SetContainer} />
               <Route path='/menu' component={Modal} />
+              <Route path='/cards' render={() => (<CardContainer props={props.store}/>)} />
             </Switch>
           </main>
         </>
