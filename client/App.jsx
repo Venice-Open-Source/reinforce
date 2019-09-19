@@ -28,6 +28,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const App = (props) => {
+  console.log('props in APP', props);
   const [showModal, changeShowModal] = useState(false);
   const [showBackdrop, changeShowBackdrop] = useState(false);
 
