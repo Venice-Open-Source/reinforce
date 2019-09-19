@@ -1,11 +1,26 @@
 import React, { Component } from "react";
 
-const Modal = () => {
+import '../stylesheets/Modal.css';
+
+const Modal = (props) => {
+  let modalClasses = "modal-pane";
+
+  if (props.show) {
+    modalClasses = "modal-pane open";
+  }
+
   return (
-    <div>
-      <h1>MODAL</h1>
-    </div>
+    <nav className={modalClasses}>
+      <ul>
+        <li>
+          <a href="/sets">My Sets</a>
+        </li>
+        <li>
+          <a href="/setss">Create Set</a>
+        </li>
+      </ul>
+    </nav>
   )
-}
+};
 
 export default Modal;

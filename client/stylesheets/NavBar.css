@@ -8,8 +8,11 @@
   padding: 0 1rem;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  /* z-index: 300; */
 }
 
+.main-nav_logo,
 .main-nav_logo h1 {
   margin: 0;
   font-size: 2.0rem;
@@ -21,6 +24,7 @@
   
   margin-left: 1.5rem;
 }
+
 .main-nav_items ul {
    display: flex;
   padding: 0;
@@ -43,4 +47,18 @@
 .main-nav_items a.active {
   color: orange;
 
+}
+
+.fa-burger {
+  font-size: 2rem;
+}
+
+.fa-burger:hover {
+  color: white;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.pane-modal {
+  border: 2px solid aquamarine;
 }

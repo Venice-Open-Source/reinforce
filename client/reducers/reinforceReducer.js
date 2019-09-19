@@ -1,6 +1,7 @@
 import * as types from "../constants/action-types";
 
 const initialState = {
+  isLoggedIn: false,
   userEmail: "jakeory@yahoo.com",
   setName: "",
   cardFront: "",
@@ -8,7 +9,7 @@ const initialState = {
   sets: [
     // {
     //   setname: "", 
-    //   cards: [] 
+    //   cards: [{}, {}] 
     // }
   ]
 };
@@ -55,6 +56,13 @@ const reinforceReducer = (state = initialState, action) => {
         ...state,
         sets: currentSets
       }
+
+    case types.UPDATE_CARD_FRONT: 
+      console.log('action.payload in UPDATE_CARD reducer:', action.payload);
+      const myCard = {};
+      let myCardFront = cardFront;
+      let myCardBack = cardBack;
+
 
     default:
       return state;

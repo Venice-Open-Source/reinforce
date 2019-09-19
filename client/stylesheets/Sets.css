@@ -1,3 +1,9 @@
-.sets-container {
-  
+.set-div {
+  border: 2px solid black;
+  margin: 2rem 2rem;
+}
+
+.set-boxes {
+  display: flex;
+  flex-direction: column;
 }

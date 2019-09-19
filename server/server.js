@@ -18,6 +18,8 @@ app.use(cookieParser());
 // app.use('/build/', express.static(path.resolve(__dirname, '../build')));
 
 app.use('/assets/', express.static(path.resolve(__dirname, '../client/assets/')));
+app.use('/build/', express.static(path.resolve(__dirname, '../build')));
+
 app.use('/api', apiRouter);
 
 // slash route
@@ -25,15 +27,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+app.post('/addCard', (req, res) => {
+  res.status(200).json({card: "success"});
+})
+
 /*                ROUTES FOR TESTING                */
 // dummy route for testing authentication
 app.post('/createUser', authControllers.createUser, authControllers.setCookie, (req, res) => {
-  res.status(200).send('secret accessed');
+  res.status(200).json({ secret: "accessed" });
 });
 
 // dummy routes for testing authentication
 app.post('/login', authControllers.login, authControllers.setCookie, (req, res) => {
-  res.status(200).send('secret accessed');
+  res.status(200).json({ login: "success" });
 });
 
 // dummy routes for testing authentication
