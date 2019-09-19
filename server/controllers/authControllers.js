@@ -1,7 +1,9 @@
+// uuidv4 generates a random universally unique identifier
 const uuidv4 = require('uuid/v4');
 const bcrypt = require('bcryptjs');
 const db = require('../model/db');
 
+// controls the work factor for bcrypt
 const Salt_Work_Factor = 10;
 
 const authControllers = {};
@@ -77,7 +79,7 @@ authControllers.setCookie = (req, res, next) => {
   const values = [email, ssid];
   db.query(query, values)
     .then((resp) => {
-      res.cookie('ssid', ssid);
+      res.cookie('ssid', ssid, { maxAge: 900000, httpOnly: true });
       return next();
     })
     .catch((err) => {
