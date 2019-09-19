@@ -12,12 +12,16 @@ userController.getUser = (req, res, next) => {
 };
 
 userController.createUser = (req, res, next) => {
+  console.log("inside create user cont", req.body);
+  // need to bcrypt.hash the incoming password before storing it in the database.
+
   const SQL = 'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING user_id';
   res.locals.db.query(SQL, [req.body.email, req.body.password])
     .then((data) => {
       const [user] = data.rows;
       const userId = user.user_id;
       res.locals.user = { userId };
+      console.log('res.locals.user is:', res.locals.user);
       return next();
     })
     .catch((queryErr) => next({ log: queryErr }));
