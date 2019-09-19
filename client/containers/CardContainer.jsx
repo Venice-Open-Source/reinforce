@@ -4,9 +4,9 @@ import '../stylesheets/CardContainer.css';
 
 const CardContainer = (props) => {
   console.log('props inside Card COntainer:', props);
-  const cardsArray = props.props.sets[0].cards.map((e, i) => {
+  const cardsArray = props.sets[props.setid].cards.map((e, i) => {
     return (
-      <Card key={i} id={i} front={e.cardFront} back={e.cardBack} />
+      <Card key={i} id={props.setid} front={e.cardFront} back={e.cardBack} />
     )
   });
 
