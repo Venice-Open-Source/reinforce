@@ -8,6 +8,7 @@ const authControllers = {};
 
 // should call setCookie after creating user as the next piece of middleware in the chain
 authControllers.createUser = (req, res, next) => {
+  console.log('login middleware fired:', req.body);
   const { email, password } = req.body;
   if (email !== undefined && password !== undefined) {
     const query = 'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *';
@@ -16,10 +17,11 @@ authControllers.createUser = (req, res, next) => {
     const values = [email, hashedPass];
     db.query(query, values)
       .then((resp) => {
+        console.log('user successfully added to db');
         res.locals.email = resp.rows[0].email;
         res.locals.password = resp.rows[0].password;
         res.locals.userId = resp.rows[0].user_id;
-        next();
+        return next();
       })
       .catch((err) => {
         if (err.code === '23505') {
@@ -68,6 +70,7 @@ authControllers.login = (req, res, next) => {
 };
 
 authControllers.setCookie = (req, res, next) => {
+  console.log('setcookie middleware fired!');
   const ssid = uuidv4();
   const { email } = res.locals;
   const query = 'INSERT INTO sessions (email, ssid) VALUES ($1, $2) RETURNING *';
