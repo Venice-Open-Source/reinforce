@@ -30,9 +30,9 @@ export const updateCardBack = (cardBack) => ({
   payload: cardBack
 });
 
-export const addCard = (card) => (dispatch) => {
+export const addCard = (card) => (dispatch, getState) => {
   console.log('addCard thunked', card);
-  fetch("/api/card/", {
+  fetch("/addCard", {
     method: "POST",
     headers: { 'Content-Type' : 'application/json' },
     body: JSON.stringify(card)
