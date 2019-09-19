@@ -51,7 +51,7 @@ const App = (props) => {
               <Route path='/signup' render={() => (<Signup signupHandler={props.signupButtonHandler} />)} />
               <Route path='/sets' component={SetContainer} />
               <Route path='/menu' component={Modal} />
-              <Route path='/cards' render={() => (<CardContainer props={props.store}/>)} />
+              {/* <Route path='/cards' render={() => (<CardContainer props={props.store}/>)} /> */}
             </Switch>
             <StaticCircles />
             <AnimatedSquares />
