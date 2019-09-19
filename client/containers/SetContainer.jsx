@@ -22,12 +22,6 @@ const mapDispatchToProps = dispatch => ({
     e.preventDefault();
     dispatch(actions.addSet());
   },
-  updateCardFront: (e) => {
-    dispatch(actions.updateCardFront(e.target.value))
-  },
-  updateCardBack: (e) => {
-    dispatch(actions.updateCardBack(e.target.value))
-  },
   addCard: (card) => {
     dispatch(actions.addCard(card));
   }
@@ -36,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 const SetContainer = props => {
   console.log("store sets in setContainer", props.store.sets);
   const setsArray = props.store.sets.map((e, i) => {
-    return <Set sets={props.store.sets} key={i} setName={e.setname} addCard={props.addCard}></Set>
+    return <Set sets={props.store.sets} key={i} id={i} setName={e.setname} addCard={props.addCard}></Set>
   });
 
   console.log("store inside SetContainer", props.store);

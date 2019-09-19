@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../stylesheets/Sets.css';
+import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import Card from '../components/Card.jsx';
 
 const Sets = (props) => {
   const [cardFront, changeCardFront] = useState('');
@@ -7,16 +9,16 @@ const Sets = (props) => {
   console.log('props in Sets component:', props);
   let cardCount, cardString;
 
-  if (props.sets[0].cards) {
-    cardCount = props.sets[0].cards.length > 0 ? props.sets[0].cards.length : 0;
-    cardString = `There are ${cardCount} cards in this set`;
-  } else {
-    cardString = 'There are no cards in this set';
-  }
+  if (props.sets[props.id].cards) {
+    cardCount = props.sets[props.id].cards.length > 0 ? props.sets[props.id].cards.length : 0;
+    cardString = cardCount > 0 ? `There ` + (cardCount === 1 ? 'is ' : 'are ') + `${cardCount} card` + (cardCount === 1 ? ' ' : 's ') + `in this set` : 'There are no cards in this set';
+  } 
 
   return (
       <div className="set-div">
-        <a className="set-boxes">
+        <NavLink to='/cards'>cards route</NavLink>
+        <a href={`/getCards/${props.id}`}/>
+        <div className="set-boxes">
           {props.setName}
           <br/>
           {cardString}
@@ -28,12 +30,12 @@ const Sets = (props) => {
               <input type="text" id="cardBack" onChange={(e) => changeCardBack(e.target.value)}></input>
               <button onClick={(e) => {
                 e.preventDefault();
-                const newCard = { cardFront, cardBack };
+                const newCard = { setKey: props.id, cardFront, cardBack };
                 props.addCard(newCard);
               }}>Add Card</button>
             </div>
           </form>
-        </a>
+        </div>
       </div>
   )
 };
