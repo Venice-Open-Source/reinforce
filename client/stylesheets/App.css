@@ -1,3 +1,186 @@
+@import url("https://fonts.googleapis.com/css?family=Assistant|Abril+Fatface&display=swap");
+
+
 .main-content {
-  margin: 4rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  box-sizing: border-box;  
+}
+
+.main-content input{  
+  height: 2.5rem;
+  max-width: 22rem;
+  min-width: 10rem;
+  font-size: 0.75rem;
+  border-radius: 25px;
+  border-style: none;
+  padding-left: 1rem;
+  background-color: rgb(231, 237, 255);
+}
+
+.main-content label{  
+  color: black;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  margin-left: 0.4rem
+}
+
+.main-content input:-webkit-autofill,
+.main-content input:-webkit-autofill:hover, 
+.main-content input:-webkit-autofill:focus, 
+.main-content input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 30px rgb(231, 237, 255) inset !important;
+}
+
+
+.main-content button{
+  height: 2.5rem;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  font-size: 1.0rem;
+  background-color: rgb(255, 101, 167);
+  color: white;  
+  border-radius: 25px;
+  border-style: none;
+}
+@media screen and (max-width: 610px) {
+  .main-content button{
+    width: 100%;
+  }
+}
+@media screen and (min-width: 610px) {
+  .main-content button{
+    min-width: 10rem;
+  }
+}
+
+
+#circle-three {position: fixed;
+  top: -2vw;
+  right: -5vw;
+  height: 100px;
+  width: 100px;
+  background-color: rgb(255, 109, 167);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#circle-four {position: fixed;
+  left: 9vw;
+  height: 25px;
+  width: 25px;
+  background-color: rgb(34, 185, 160);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.animated-squares{
+  position: absolute;
+  z-index: -3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.animated-squares li{
+  position: absolute;
+  display: block;
+  list-style: none;
+  width: 20px;
+  height: 20px;
+  background: rgba(211, 15, 15, 0.671);
+  animation: animate 25s linear infinite;
+  bottom: -150px;
+  
+}
+
+.animated-squares li:nth-child(1){
+  left: 25%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.animated-squares li:nth-child(2){
+  left: 10%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 2s;
+  animation-duration: 12s;
+}
+
+.animated-squares li:nth-child(3){
+  left: 70%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 4s;
+}
+
+.animated-squares li:nth-child(4){
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.animated-squares li:nth-child(5){
+  left: 65%;
+  width: 20px;
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.animated-squares li:nth-child(6){
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.animated-squares li:nth-child(7){
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.animated-squares li:nth-child(8){
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation-delay: 15s;
+  animation-duration: 45s;
+}
+
+.animated-squares li:nth-child(9){
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation-delay: 2s;
+  animation-duration: 35s;
+}
+
+.animated-squares li:nth-child(10){
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 11s;
+}
+
+@keyframes animate {
+  0%{
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+      border-radius: 0;
+  }
+  100%{
+      transform: translateY(-1000px) rotate(720deg);
+      opacity: 0;
+      border-radius: 50%;
+  }
 }
