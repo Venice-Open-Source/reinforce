@@ -90,7 +90,7 @@ apiRouter.get('/card/', authControllers.checkCookie, dbController.getDb, cardCon
 });
 
 // create a card
-apiRouter.post('/card/', authControllers.checkCookie, dbController.getDb, cardController.createCard, (req, res) => {
+apiRouter.post('/card', authControllers.checkCookie, dbController.getDb, cardController.createCard, (req, res) => {
   res.status(200);
   res.json(res.locals.card);
 });

@@ -16,8 +16,9 @@ if (!connectedClient) {
 const dbController = {};
 
 dbController.getDb = (req, res, next) => {
+  console.log('getDB controller fired');
   res.locals.db = connectedClient;
-  next();
+  return next();
 };
 
 module.exports = dbController;
