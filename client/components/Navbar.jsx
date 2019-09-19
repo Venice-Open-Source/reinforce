@@ -39,7 +39,7 @@ function Navbar(props) {
   return (
     <header className="main-nav">
       <div className="main-nav_logo">
-        <h1>Reinforce</h1>
+        <h1>re.in.force</h1>
       </div>
       <nav className="main-nav_items">
         {myNav}

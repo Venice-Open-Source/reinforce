@@ -11,7 +11,8 @@ import Backdrop from './components/Backdrop.jsx';
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
 import CardContainer from './containers/CardContainer.jsx';
-
+import StaticCircles from './components/StaticCircles.jsx';
+import AnimatedSquares from './components/AnimatedSquares.jsx';
 
 import './stylesheets/App.css';
 
@@ -52,6 +53,8 @@ const App = (props) => {
               <Route path='/menu' component={Modal} />
               <Route path='/cards' render={() => (<CardContainer props={props.store}/>)} />
             </Switch>
+            <StaticCircles />
+            <AnimatedSquares />
           </main>
         </>
       </BrowserRouter>
