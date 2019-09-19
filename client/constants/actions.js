@@ -42,24 +42,30 @@ export const userSignIn = (userInfo) => ({
 
 //thunk that handles login attempt
 export const userLogin = user => (dispatch, getState) => {
-  fetch("/api/user/", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user)
-  })
-    .then(data => data.json())
-    .then(data => dispatch(userLogIn(data)))
-    .catch(error => console.error(error));
-};
-
-//thunk that handles signup attempt
-export const userSignup = user => (dispatch, getState) => {
-  fetch("/api/user/", {
+  fetch("/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user)
   })
     .then(data => data.json())
-    .then(data => dispatch(userSignIn(data)))
+    .then(data => {
+      console.log('login success!', data);
+      dispatch(userLogIn(data))
+    })
+    .catch(error => console.error(error));
+};
+
+//thunk that handles signup attempt
+export const userSignup = user => (dispatch, getState) => {
+  fetch("/createUser", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user)
+  })
+    .then(data => data.json())
+    .then(data => {
+      console.log('post successful, here is data:', data)
+      dispatch(userSignIn(data))
+    })
     .catch(error => console.log(error));
 };

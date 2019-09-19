@@ -20,7 +20,7 @@ const Signup = (props) => {
                 <button type="submit" onClick={(e) => {
                     e.preventDefault();
                     const user = { email, password }
-                    console.log(user);
+                    // console.log(user);
                     props.signupHandler(user)
                 }}>SignUp</button>
             </div>

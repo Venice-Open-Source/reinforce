@@ -37,7 +37,7 @@ const App = (props) => {
         <Modal show={showModal} />
         {showModal && <Backdrop changeShowModal={changeShowModal} showModal={showModal} />}
         <>
-          <NavBar changeShowModal={changeShowModal} showModal={showModal} isLoggedIn={props.isLoggedIn} loginHandler={props.loginButtonHandler} signupHandler={props.signupButtonHandler} />
+          <NavBar changeShowModal={changeShowModal} showModal={showModal} isLoggedIn={props.isLoggedIn} />
           <main className="main-content">
             <Switch>
               <Redirect from='/' to='/login' exact />

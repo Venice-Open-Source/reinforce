@@ -27,12 +27,12 @@ app.get('/', (req, res) => {
 /*                ROUTES FOR TESTING                */
 // dummy route for testing authentication
 app.post('/createUser', authControllers.createUser, authControllers.setCookie, (req, res) => {
-  res.status(200).send('secret accessed');
+  res.status(200).json({ secret: "accessed" });
 });
 
 // dummy routes for testing authentication
 app.post('/login', authControllers.login, authControllers.setCookie, (req, res) => {
-  res.status(200).send('secret accessed');
+  res.status(200).json({ login: "success" });
 });
 
 // dummy routes for testing authentication
