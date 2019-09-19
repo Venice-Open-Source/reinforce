@@ -4,7 +4,7 @@ import '../stylesheets/Modal.css';
 
 const Modal = (props) => {
   let modalClasses = "modal-pane";
-  
+
   if (props.show) {
     modalClasses = "modal-pane open";
   }
@@ -13,10 +13,10 @@ const Modal = (props) => {
     <nav className={modalClasses}>
       <ul>
         <li>
-          <a href="/">My Sets</a>
+          <a href="/sets">My Sets</a>
         </li>
         <li>
-          <a href="/">Create Set</a>
+          <a href="/setss">Create Set</a>
         </li>
       </ul>
     </nav>

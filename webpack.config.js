@@ -20,7 +20,8 @@ module.exports = {
     publicPath: '/build/',
     hot: true,
     proxy: {
-      '/test': 'http://localhost:3000'
+      '/api/card': 'http://localhost:3000',
+      secure: false
     }
   },
   module: {

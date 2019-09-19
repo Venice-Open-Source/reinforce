@@ -5,7 +5,8 @@ import Footer from '../components/Footer.jsx';
 // import css
 import '../stylesheets/Home.css';
 
-const Home = () => {
+const Home = (props) => {
+  console.log('props in Home component', props.props);
   return (
     <div id="Home-container" className="Home">
       <div className="home-div">

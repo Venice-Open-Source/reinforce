@@ -20,14 +20,34 @@ export const addSet = (setName) => ({
   payload: setName
 });
 
-export const updateCardName = (cardName) => ({
-  type: types.UPDATE_CARD,
-  payload: cardName
+export const updateCardFront = (cardFront) => ({
+  type: types.UPDATE_CARD_FRONT,
+  payload: cardFront
 });
 
-export const addCard = (cardName) => ({
+export const updateCardBack = (cardBack) => ({
+  type: types.UPDATE_CARD_BACK,
+  payload: cardBack
+});
+
+export const addCard = (card) => (dispatch) => {
+  console.log('addCard thunked', card);
+  fetch("/api/card/", {
+    method: "POST",
+    headers: { 'Content-Type' : 'application/json' },
+    body: JSON.stringify(card)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('card action triggered', data);
+    dispatch(addCardAction(card));
+  })
+  .catch(e => console.log(e));
+}
+
+export const addCardAction = (card) => ({
   type: types.ADD_CARD,
-  payload: cardName
+  payload: card
 });
 
 export const userSignIn = (userInfo) => ({

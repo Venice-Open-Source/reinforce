@@ -16,10 +16,13 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  loginHandler: () => {
+    dispatch(action.loginHandler());
+  }
 });
 
 const App = (props) => {
+  console.log('props in APP', props);
   const [showModal, changeShowModal] = useState(false);
   const [showBackdrop, changeShowBackdrop] = useState(false);
 
@@ -34,7 +37,7 @@ const App = (props) => {
           <Switch>
             <Redirect from='/' to='/auth' exact />
             <Route path='/auth' component={Auth} />
-            <Route path='/home' component={Home} />
+            <Route path='/home' render={() => (<Home props={props}/>)}/>
             <Route path='/sets' component={SetContainer} />
             <Route path='/menu' component={Modal} />
           </Switch>
