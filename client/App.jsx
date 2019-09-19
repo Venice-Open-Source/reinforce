@@ -6,6 +6,8 @@ import Auth from './components/Auth.jsx';
 import NavBar from './components/Navbar.jsx';
 import SetContainer from './containers/SetContainer.jsx';
 import Modal from './containers/Modal.jsx'
+import StaticCircles from './components/StaticCircles.jsx';
+import AnimatedSquares from './components/AnimatedSquares.jsx';
 
 import './stylesheets/App.css';
 const mapStateToProps = store => ({
@@ -32,27 +34,9 @@ const App = () => {
           <Route path='/home' component={Home} />
           <Route path='/sets' component={SetContainer} />
           <Route path='/menu' component={Modal} />
-        </Switch>
-        <div id='circle-one' />
-        <div id='circle-two' />
-        <div id='circle-three' />
-        <div id='circle-four' />
-        <img id='thinker-one' src='/assets/thinker.svg'/>
-
-<div class="area" >
-            <ul class="circles">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
-    </div >
+        </Switch>                 
+        <StaticCircles />
+        <AnimatedSquares />
         </main>
       </Fragment>
     </BrowserRouter>
