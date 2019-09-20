@@ -15,10 +15,25 @@ export const updateSetName = (setName) => ({
   payload: setName
 });
 
-export const addSet = (setName) => ({
+export const addSetAction = (set) => ({
   type: types.ADD_SET,
-  payload: setName
+  payload: set
 });
+
+export const addSetThunk = (set) => (dispatch, getState) => {
+  console.log('AddSet ThunkED', set);
+  fetch('/addSet', {
+    method: "POST",
+    headers: { 'Content-Type' : 'application/json' },
+    body: JSON.stringify(set)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('set action triggered', data);
+    dispatch(addSetAction(data));
+  })
+  .catch(e => console.log(e));
+}
 
 export const updateCardFront = (cardFront) => ({
   type: types.UPDATE_CARD_FRONT,

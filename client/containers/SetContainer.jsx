@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { connect } from 'react-redux';
 import * as actions from '../constants/actions';
 import Set from './Sets.jsx';
+import CardContainer from './CardContainer.jsx';
+
 
 import '../stylesheets/SetContainer.css';
 
@@ -20,13 +22,7 @@ const mapDispatchToProps = dispatch => ({
       e.target.value
     );
     e.preventDefault();
-    dispatch(actions.addSet());
-  },
-  updateCardFront: (e) => {
-    dispatch(actions.updateCardFront(e.target.value))
-  },
-  updateCardBack: (e) => {
-    dispatch(actions.updateCardBack(e.target.value))
+    dispatch(actions.addSetAction());
   },
   addCard: (card) => {
     dispatch(actions.addCard(card));
@@ -34,10 +30,24 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const SetContainer = props => {
+  const [showCards, changeShowCards] = useState({
+    setid: 0,
+    show: false
+  });
+   
+  let showTHIS;
+
+
   console.log("store sets in setContainer", props.store.sets);
   const setsArray = props.store.sets.map((e, i) => {
-    return <Set sets={props.store.sets} key={i} setName={e.setname} addCard={props.addCard}></Set>
+    return <Set sets={props.store.sets} key={i} id={i} setName={e.setname} addCard={props.addCard} showCards={showCards} changeShowCards={changeShowCards}></Set>
   });
+
+  if (showCards.show) {
+    showTHIS = <CardContainer setid={showCards.setid} sets={props.store.sets} />;
+  } else {
+    showTHIS = setsArray;
+  }
 
   console.log("store inside SetContainer", props.store);
   return (
@@ -51,11 +61,11 @@ const SetContainer = props => {
             className="sets-form-input"
             onChange={props.updateSetName}
           ></input>
-          <button onClick={props.addSet}>Add Set</button>
+          <button onClick={props.addSet}>add set</button>
         </div>
       </form>
       <div className="sets-container">
-        {setsArray}
+        {showTHIS}
       </div>
     </div>
   );
