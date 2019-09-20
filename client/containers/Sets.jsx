@@ -17,15 +17,12 @@ const Sets = (props) => {
   return (
       <div className="set-div">
         <a className="set-boxes">
-          {props.setName}
+          <strong>Enter a card for the {props.setName} Set</strong>
           <br/>
-          {cardString}
-          <form className="auth-form">
+          <form className="sets-form">
             <div className="form-control">
-              <label htmlFor="cardFront">Card Front</label>
-              <input type="text" id="cardFront" onChange={(e) => changeCardFront(e.target.value)}></input>
-              <label htmlFor="cardBack">Card Back</label>
-              <input type="text" id="cardBack" onChange={(e) => changeCardBack(e.target.value)}></input>
+              <input type="text" id="cardFront" placeholder="Type in your question" onChange={(e) => changeCardFront(e.target.value)}></input>
+              <textarea id="cardBack" placeholder="Answer it!" onChange={(e) => changeCardBack(e.target.value)}></textarea>
               <button onClick={(e) => {
                 e.preventDefault();
                 const newCard = { cardFront, cardBack };

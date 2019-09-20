@@ -9,9 +9,6 @@ import SetContainer from './containers/SetContainer.jsx';
 import Modal from './containers/Modal.jsx';
 import Login from './components/Login.jsx';
 import Backdrop from './components/Backdrop.jsx'
-import StaticCircles from './components/StaticCircles.jsx';
-import AnimatedSquares from './components/AnimatedSquares.jsx';
-
 import './stylesheets/App.css';
 
 const mapStateToProps = store => ({
@@ -50,8 +47,6 @@ const App = (props) => {
               <Route path='/sets' component={SetContainer} />
               <Route path='/menu' component={Modal} />
             </Switch>
-            <StaticCircles />
-            <AnimatedSquares />
           </main>
         </>
       </BrowserRouter>
