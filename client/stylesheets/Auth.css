@@ -4,6 +4,22 @@
   margin: 5rem auto;
 }
 
+.auth-form input{  
+  height: 2.5rem;
+  max-width: 22rem;
+  min-width: 10rem;
+  font-size: 0.75rem;
+  border-radius: 25px;
+  border-style: none;
+  padding-left: 1rem;
+  background-color: rgb(231, 237, 255);
+}
+
+.auth-form button{
+  color: white;  
+  background-color: rgb(255, 101, 167);
+}
+
 .form-control label,
 .form-control input {
   width: 100%;

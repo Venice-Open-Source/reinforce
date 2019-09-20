@@ -1,9 +1,72 @@
 .set-div {
-  border: 2px solid black;
-  margin: 2rem 2rem;
+  font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+  width: 90%;
+  height: 80%;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-bottom: 1rem;
+  color: #444;
+  line-height: 20px;
+  border: 1px solid #d2d2d2;
+  background: #fff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+  background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+  -webkit-background-size: 100% 20px;
+  -moz-background-size: 100% 20px;
+  -ms-background-size: 100% 20px;
+  -o-background-size: 100% 20px;
+  background-size: 100% 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
 }
 
-.set-boxes {
+.set-div button {
+  background-color:  rgba(101, 197, 255, 0.59);
+}
+
+#cardFront {
+  color: darkred;
   display: flex;
   flex-direction: column;
+  width:100%;
+  height: 2.5rem;
+  font-size: 0.75rem;
+  border-radius: 25px;
+  border-style: none;
+  padding-left: 0.5rem;
+  background-color: transparent;
 }
+
+#cardBack {
+  color: darkslategray;
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  height: 40vh;
+  font-size: 0.75rem;
+  border-radius: 25px;
+  border-style: none;
+  padding-left: 0.5rem;
+  background-color: rgb(231, 237, 255);
+  background-color: transparent;
+}
+
+.sets-form-input {
+  width:25%;
+  height: 2.5rem;
+  font-size: 0.75rem;
+  border-radius: 25px;
+  border-style: none;
+  padding-left: 0.5rem;
+  background-color: rgb(231, 237, 255);
+}
+

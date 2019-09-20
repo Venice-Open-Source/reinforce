@@ -16,79 +16,25 @@ const Sets = (props) => {
     cardCount = props.sets[props.id].cards.length > 0 ? props.sets[props.id].cards.length : 0;
     cardString = cardCount > 0 ? `There ` + (cardCount === 1 ? 'is ' : 'are ') + `${cardCount} card` + (cardCount === 1 ? ' ' : 's ') + `in this set` : 'There are no cards in this set';
   } 
-
-  // let showThis;
-
-  // if (showCards) {
-  //   showThis = <CardContainer setid={props.id} sets={props.sets} />
-  // } else {
-  //   showThis = 
-  //     <div className="set-div">
-  //     <div className="set-boxes">
-  //      <button setid={props.id} onClick={() => props.changeShowCards({setid: props.id, show: !showsCards.show})}>show me my cards</button>
-  //        {props.setName}
-  //        <br/>
-  //        {cardString}
-  //        <form className="auth-form">
-  //          <div className="form-control">
-  //            <label htmlFor="cardFront">Card Front</label>
-  //            <input type="text" id="cardFront" onChange={(e) => changeCardFront(e.target.value)}></input>
-  //            <label htmlFor="cardBack">Card Back</label>
-  //            <input type="text" id="cardBack" onChange={(e) => changeCardBack(e.target.value)}></input>
-  //            <button onClick={(e) => {
-  //              e.preventDefault();
-  //              const newCard = { setKey: props.id, cardFront, cardBack };
-  //              props.addCard(newCard);
-  //            }}>Add Card</button>
-  //          </div>
-  //        </form>
-  //      </div>
-  //    </div>
-  // }
-
   return (
-  <div className="set-div">
-    <div className="set-boxes">
-     <button setid={props.id} onClick={() => props.changeShowCards({setid: props.id, show: !props.showCards.show})}>show me my cards</button>
-       {props.setName}
-       <br/>
-       {cardString}
-       <form className="auth-form">
-         <div className="form-control">
-           <label htmlFor="cardFront">Card Front</label>
-           <input type="text" id="cardFront" onChange={(e) => changeCardFront(e.target.value)}></input>
-           <label htmlFor="cardBack">Card Back</label>
-           <input type="text" id="cardBack" onChange={(e) => changeCardBack(e.target.value)}></input>
-           <button onClick={(e) => {
-             e.preventDefault();
-             const newCard = { setKey: props.id, cardFront, cardBack };
-             props.addCard(newCard);
-           }}>Add Card</button>
-         </div>
-       </form>
-     </div>
-   </div>
-    // <div className="set-div">
-    //    <div className="set-boxes">
-    //     <button setid={props.id} onClick={() => changeShowCards(!showCards)}>show me my cards</button>
-    //       {props.setName}
-    //       <br/>
-    //       {cardString}
-    //       <form className="auth-form">
-    //         <div className="form-control">
-    //           <label htmlFor="cardFront">Card Front</label>
-    //           <input type="text" id="cardFront" onChange={(e) => changeCardFront(e.target.value)}></input>
-    //           <label htmlFor="cardBack">Card Back</label>
-    //           <input type="text" id="cardBack" onChange={(e) => changeCardBack(e.target.value)}></input>
-    //           <button onClick={(e) => {
-    //             e.preventDefault();
-    //             const newCard = { setKey: props.id, cardFront, cardBack };
-    //             props.addCard(newCard);
-    //           }}>Add Card</button>
-    //         </div>
-    //       </form>
-    //     </div>
-    //   </div>
+    <div className="set-div">
+      <a className="set-boxes">
+        <strong>Enter a card for the {props.setName} Set</strong>
+        <br/>
+        <form className="sets-form">
+          <div className="form-control">
+            <input type="text" id="cardFront" placeholder="Type in your question" onChange={(e) => changeCardFront(e.target.value)}></input>
+            <textarea id="cardBack" placeholder="Answer it!" onChange={(e) => changeCardBack(e.target.value)}></textarea>
+            <button onClick={(e) => {
+              e.preventDefault();
+              const newCard = { setKey: props.id, cardFront, cardBack };
+              props.addCard(newCard);
+            }}>add card</button>
+            <button setid={props.id} onClick={() => props.changeShowCards({setid: props.id, show: !props.showCards.show})}>show me my cards</button>
+          </div>
+        </form>
+      </a>
+    </div>
   )
 };
 

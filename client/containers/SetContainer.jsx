@@ -52,15 +52,16 @@ const SetContainer = props => {
   console.log("store inside SetContainer", props.store);
   return (
     <div>
-      <form className="auth-form">
+      <form className="sets-form">
         <div className="form-control">
           <label htmlFor="setName">Set Name</label>
           <input
             type="text"
             id="setName"
+            className="sets-form-input"
             onChange={props.updateSetName}
           ></input>
-          <button onClick={props.addSet}>Add Set</button>
+          <button onClick={props.addSet}>add set</button>
         </div>
       </form>
       <div className="sets-container">

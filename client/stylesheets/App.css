@@ -1,22 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Assistant|Abril+Fatface&display=swap");
 
+:focus { outline: none; }
 
 .main-content {
   display: flex;
   flex-direction: column;
   padding: 4rem;
   box-sizing: border-box;  
-}
-
-.main-content input{  
-  height: 2.5rem;
-  max-width: 22rem;
-  min-width: 10rem;
-  font-size: 0.75rem;
-  border-radius: 25px;
-  border-style: none;
-  padding-left: 1rem;
-  background-color: rgb(231, 237, 255);
 }
 
 .main-content label{  
@@ -32,15 +22,11 @@
 .main-content input:-webkit-autofill:active  {
   -webkit-box-shadow: 0 0 0 30px rgb(231, 237, 255) inset !important;
 }
-
-
 .main-content button{
   height: 2.5rem;
   margin-top: 1rem;
   margin-right: 2rem;
   font-size: 1.0rem;
-  background-color: rgb(255, 101, 167);
-  color: white;  
   border-radius: 25px;
   border-style: none;
 }
@@ -53,26 +39,6 @@
   .main-content button{
     min-width: 10rem;
   }
-}
-
-
-#circle-three {position: fixed;
-  top: -2vw;
-  right: -5vw;
-  height: 100px;
-  width: 100px;
-  background-color: rgb(255, 109, 167);
-  border-radius: 50%;
-  display: inline-block;
-}
-
-#circle-four {position: fixed;
-  left: 9vw;
-  height: 25px;
-  width: 25px;
-  background-color: rgb(34, 185, 160);
-  border-radius: 50%;
-  display: inline-block;
 }
 
 .animated-squares{

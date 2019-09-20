@@ -1,11 +1,17 @@
 import React, { useState, Component } from "react";
 import { NavLink } from "react-router-dom";
+import StaticCircles from './StaticCircles.jsx';
+import AnimatedSquares from './AnimatedSquares.jsx';
+
 
 const Signup = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return (
+      <div>
+        <StaticCircles />
+        <AnimatedSquares />      
         <form className="auth-form">
             <div className="form-control">
                 <label htmlFor="email">E-mail</label>
@@ -25,6 +31,7 @@ const Signup = (props) => {
                 }}>SignUp</button>
             </div>
         </form>
+      </div>
     )
 }
 

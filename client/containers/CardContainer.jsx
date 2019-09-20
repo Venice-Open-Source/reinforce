@@ -16,9 +16,29 @@ const CardContainer = (props) => {
   return (
     <div className="card-container">
       {cardsArray[count]}
-      <button onClick={() => changeShowFront(!showFront)}>flip</button>
-      <button onClick={() => changeCount(count + 1)}>next card</button>
-      <button onClick={() => changeCount(count - 1)}>prev card</button>
+      <button onClick={() => { 
+        if (showFront) {
+          changeShowFront(!showFront)
+        } else {
+          changeShowFront(true);
+        }
+      }
+      }>flip</button>
+      <button onClick={() => 
+        {
+          changeCount(count + 1);
+          if (!showFront) {
+            changeShowFront(true);
+          }
+        }
+        }>next card</button>
+      <button onClick={() => {
+        changeCount(count - 1);
+        if (!showFront) {
+          changeShowFront(true);
+        }
+      }
+    }>prev card</button>
     </div>
   )
 };

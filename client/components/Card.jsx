@@ -6,24 +6,9 @@ const Card = (props) => {
   // console.log('props in Card', props);
   return (
     <div className="card">
-      <ul>
-        {/* <li>
-          Front: {props.front}
-        </li>
-        <li>
-          Back: {props.back}
-        </li> */}
       { 
-        props.showFront ? 
-        <li>
-          Front: {props.front}
-        </li> 
-        : 
-        <li>
-          Back: {props.back}
-        </li>
+        props.showFront ? props.front : props.back
       }
-      </ul>
     </div>
   )
 }

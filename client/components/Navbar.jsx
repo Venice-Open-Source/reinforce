@@ -11,12 +11,6 @@ function Navbar(props) {
   const myNav = !props.isLoggedIn ? (
     <ul>
       <li>
-        <NavLink to="/login">Log In</NavLink>
-      </li>
-      <li>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </li>
-      <li>
         {/* <NavLink to="/menu">Menu</NavLink> */}
         <FontAwesomeIcon icon={faBars} className="fa-burger" onClick={() => props.changeShowModal(!props.showModal)} />
       </li>
